@@ -1,0 +1,59 @@
+Zadanie 1
+
+Cechy:
+kolor: żółty
+kształt: sześcian
+kategoria: przedmiot
+
+Atrybuty:
+położenie: coordy
+pojemność: 4 obiekty
+wymiary: 2m x 2m
+obrazek: pudelko.png
+
+funkcje:
+włóż
+wyjmij
+zakop
+
+
+Zadanie 2
+
+Cechy:
+kolor: zielony
+kształt: humanoidalny
+kategoria: ludek
+
+Atrybuty:
+położenie: coordy
+pojemność: 1 obiekt
+wymiary: 1m x 0.5m
+obrazek: kosmita.png
+
+funkcje:
+ruszaj sie
+rozmawiaj
+podaj reke
+zaatakuj
+zgiń
+
+
+Zadanie 3
+
+Cechy:
+kolor: szary
+status silnika: wyłączony
+kategoria: pojazd
+
+Atrybuty:
+położenie: coordy
+pojemność: 99999 paliwa
+wymiary: 10m x 4m
+obrazek: rakieta.png
+
+funkcje:
+wlacz silnik
+wylacz silnik
+ruszaj lotkami
+wyladuj
+zaswiec lampke w kokpicie
