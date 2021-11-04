@@ -50,12 +50,14 @@ class Bank:
 
 
     def add_account(self, name, surname):
-        self.accounts.append(self.bank_id, Account(input('Input your name: '), input('Input your surname: ')))  # update the accouts list and create a new Account object
+        new_account = Account(self.bank_id, input('Input your name: '), input('Input your surname: '))
+        self.accounts.append(new_account)  # update the accouts list and create a new Account object
 
 
     def transfer(self, from_acc, to_acc, amount):
         if abs(amount) == amount:
-            self.transfers.append(WireTransfer(self.bank_id, from_acc, to_acc, amount))                 # create a WireTranfer object and append it to the self.transfers list
+            new_transfer = WireTransfer(self.bank_id, from_acc, to_acc, amount)
+            self.transfers.append(new_transfer)                 # create a WireTranfer object and append it to the self.transfers list
             from_acc.balance -= amount
             from_acc.history.append((f'{from_acc} to {to_acc}', -amount))
             to_acc.balance += amount
