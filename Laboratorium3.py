@@ -7,7 +7,7 @@ class Account:
         self.surname = surname
         self.acc_numb = random.randint(10000, 99999) + (bank_id * 100000000)
         self.balance = 0
-        self.history = dict()
+        self.history = list()
 
 
     def verify_balance(self):
@@ -43,6 +43,6 @@ class Bank:
     def transfer(self, from_acc, to_acc, amount):
         self.transfers.append(WireTransfer(self.bank_id, from_acc, to_acc, amount))
         from_acc.balance -= amount
-        from_acc.history.add(f'{from_acc} to {to_acc}', amount)
+        from_acc.history.append((f'{from_acc} to {to_acc}', amount))
         to_acc.balance += amount
-        to_acc.history.add(f'{from_acc} to {to_acc}', amount)
+        to_acc.history.append((f'{from_acc} to {to_acc}', amount))
