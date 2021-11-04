@@ -11,7 +11,13 @@ class Account:
 
 
     def verify_balance(self):
-        pass
+        current_balance = sum(x[1] for x in self.history)
+        if current_balance == self.balance:
+            print('Balance confirmed: {self.balance}')
+            return True
+        else:
+            print(f'Wrong balance: {self.balance} is not equal to the sum of operations ({current_balance})')
+            return False
 
 
 class WireTransfer:
@@ -33,7 +39,14 @@ class Bank:
 
     @property
     def deposit(self):
-        pass
+        dep = 0
+        for x in self.accounts:
+            if x.verify_balance:
+                dep += x.balance
+            else:
+                print(f'Sorry, the deposit could not be calculated due to the problem with the account {x.acc_numb} of {x.name, x.surname}')
+                return None
+        return dep
 
 
     def add_account(self, name, surname):
@@ -41,8 +54,11 @@ class Bank:
 
 
     def transfer(self, from_acc, to_acc, amount):
-        self.transfers.append(WireTransfer(self.bank_id, from_acc, to_acc, amount))
-        from_acc.balance -= amount
-        from_acc.history.append((f'{from_acc} to {to_acc}', amount))
-        to_acc.balance += amount
-        to_acc.history.append((f'{from_acc} to {to_acc}', amount))
+        if abs(amount) == amount:
+            self.transfers.append(WireTransfer(self.bank_id, from_acc, to_acc, amount))
+            from_acc.balance -= amount
+            from_acc.history.append((f'{from_acc} to {to_acc}', -amount))
+            to_acc.balance += amount
+            to_acc.history.append((f'{from_acc} to {to_acc}', amount))
+        else:
+            print(f'Wrong value! You cannot transfer {amount} because it is less than zero!')
