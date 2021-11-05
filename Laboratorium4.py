@@ -1,3 +1,46 @@
+# ZADANIE 1
+
+class One:
+    def __init__(self, number):
+        self.number = number
+
+    def __add__(self, a):
+        return self.number + a
+
+
+class Another:
+    def __init__(self, number):
+        self.number = number
+
+    def __add__(self, a):
+        return self.number + 2 ** a
+
+
+def calc_sum(obj1, obj2):
+    c = [obj1 + obj2.number, obj2 + obj1.number]
+    return sum(c)
+
+
+ab = One(8)
+bc = Another(16)
+ac = One(32)
+ad = Another(24)
+bb = One(99)
+
+print('Sumy i karasie:')
+lista = [ab, bc, ac, ad, bb]
+i = 1
+for a in lista:
+    b = lista[i]
+    print(calc_sum(a, b))
+    if i == len(lista) - 1:
+        break
+    i += 1
+
+
+
+# ZADANIE 2
+
 class ChessBoard:
     def __init__(self):
         self.figures = {}
@@ -19,8 +62,6 @@ class ChessBoard:
         print('Posortowane figury:')
         for x in f:
             print(x[0])
-
-
 
 
 class Pawn:
