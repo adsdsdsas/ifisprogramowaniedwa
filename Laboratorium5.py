@@ -23,6 +23,7 @@ print(kuba.present_myself)
 
 
 
+# -------------------------------------------------------------------------------
 # Stwórz klasę Car, a następnie utwórz trzy klasy SUV, Sport, MiniVan które będą dziedziczyć po klasie Car. Zdefiniuj odpowiednie atrybuty dla każdej z klas.
 
 class Car:
@@ -57,22 +58,37 @@ class Tir(Car):
 
 
 
+# -------------------------------------------------------------------------------
 # Napisz domieszkę AddableMixin, powinna ona udostępniać metodę pozwalającą na dodawanie dwóch obiektów do siebie.
 class AddableMixin:
     def __add__(self, other):
-        pass
-    raise NotImplementedError('Sorry I havent wrote this exercise yet')
-
-
+        new_list = list(self.value)
+        new_list.append(other)
+        return new_list
+    # raise NotImplementedError('Sorry I havent wrote this exercise yet')
 
 # Napisz domieszkę FromJSONMixin, powinna ona udostępniać metodą pozwalającą na wczytywanie wartości atrybutów z pliku JSON.
 import json
 
 class FromJSONMixin:
-    raise NotImplementedError('Sorry I havent wrote this exercise yet')
+    def from_json(self):
+        with open(self.filename, 'r') as f:
+            return json.load(f)
+        # raise NotImplementedError('Sorry I havent wrote this exercise yet')
+
+class TakeJsonListAndAddSomething(AddableMixin, FromJSONMixin):
+    def __init__(self, filename):
+        self.filename = filename
+        self.value = self.from_json()
+
+
+my_list_and_seven = TakeJsonListAndAddSomething('lab5.json')
+
+print(my_list_and_seven + 7)
 
 
 
+# -------------------------------------------------------------------------------
 # zadania z metod statycznych i klasowych:
 
 from datetime import datetime, timedelta
@@ -107,6 +123,8 @@ print(f'Wczorajsza data: {w.dzien}.{w.miesiac}.{w.rok}\nDzisiejsza data: {d.dzie
 print(d.change_format(f'Dzisiejsza data ale po polsku: {d.dzien}.{d.miesiac}.{d.rok}'))
 
 
+
+# -------------------------------------------------------------------------------
 
 # W starożytnej Grecji żyli filozofowie tacy jak Sokrates, Platon, czy Arystoteles.
 # Prowadzili oni ze sobą liczne dysputy na rozmaite tematy.
